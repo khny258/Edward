@@ -20,4 +20,4 @@ app.listen(PORT, function() {
 });
 
 // Connect app to mongo db
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_dbdg1sfs:password123!!!@ds019101.mlab.com:19101/heroku_240t5fjf";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_240t5fjf:password123!!!@ds019101.mlab.com:19101/heroku_240t5fjf";
