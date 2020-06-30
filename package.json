@@ -1,11 +1,18 @@
 {
-  "name": "mern",
+  "name": "react-passport-mongo",
   "version": "1.0.0",
   "description": "Mern Demo",
-  "main": "server.js",
+  "main": "index.js",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/client/",
+      "<rootDir>/node_modules/"
+    ]
+  },
   "scripts": {
+    "test": "jest",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
+    "start:prod": " node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
@@ -17,11 +24,21 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "coveralls": "^3.1.0",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "express-session": "^1.17.1",
     "if-env": "^1.0.4",
-    "mongoose": "^5.9.20"
+    "ignore-styles": "^5.0.1",
+    "jest": "24.9.0",
+    "mongoose": "^5.9.20",
+    "passport": "^0.4.1"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

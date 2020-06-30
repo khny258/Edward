@@ -1,0 +1,15 @@
+.title{
+   font-size: 1rem;
+}
+.body{
+   padding:5px;
+}
+.card{
+   max-width: 300px;
+   margin: auto;
+   margin-top:15%;
+   border: 1px solid #ced4da;
+   padding:20px;
+   overflow: auto;
+   border-radius: 5px;
+}
