@@ -6,15 +6,13 @@ describe("Server session tests", () => {
     it("should create a session object", () => {
       const sessionInstance = initSession(session);
       console.log(sessionInstance)
-      // expect(child.name).toEqual("Sarah");
-      // expect(child.age).toEqual(3);
     });
    })
 });
 
 // more server unit tests: 
 // test structure: AAA -> arrange, act, assert.
-// test ranges: initilazation, position, negative, error.
+// test ranges: initilazation, positive, negative, error.
 // server side tests: 
 //    test internal processes -> scripts
 //    test routes

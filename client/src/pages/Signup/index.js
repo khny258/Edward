@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-
+import styles from "./style.module.css";
 import { user as userAPI} from "../../utils/API";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import Card from "../../components/Card";
 
 class Signup extends Component {
   state = {
@@ -46,11 +47,11 @@ class Signup extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Card><Container fluid>
         <Row>
           <Col size="12">
  
-            <form>
+            <form className={styles.form}>
               <Input
                 value={this.state.username}
                 onChange={this.handleInputChange}
@@ -79,8 +80,9 @@ class Signup extends Component {
               />
               
               <FormBtn
-                // disabled={!(this.state.email && this.state.password)}
+                disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}
+                theme="primary"
               >
                 signup
               </FormBtn>
@@ -89,10 +91,8 @@ class Signup extends Component {
           
         </Row>
         {/* redirect on authenticated */}
-        {this.props.authenticated ? <Redirect to='/books'/>: <div></div>}
-
-
-      </Container>
+        {this.props.user && this.props.user._id ? <Redirect to='/home'/>: <div></div>}
+      </Container></Card>
     );
   }
 }

@@ -1,7 +1,9 @@
 import React from "react";
+import {} from "react";
 import style from "./style.module.css";
 
 export default ( props ) => {
+    
     return (
         <>
         <div className={`spin ${style.container}`} >

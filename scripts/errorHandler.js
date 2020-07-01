@@ -1,11 +1,10 @@
 module.exports = function (error, req, res, next) {
-  console.log("\n\n\n\n---\nerr handler called");
+  console.log("New Error");
     if (res.headersSent) {
       console.log('error sent');
       return next(error)
     }
-    console.log('error will be sent');
-    res.status(500)
-    console.log(error)
-    res.send(error.toString())
+    console.log(`error ${error.message} will be sent`);
+    res.status(401)
+    res.json(error.message)
   }

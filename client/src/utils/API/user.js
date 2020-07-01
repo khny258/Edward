@@ -8,5 +8,7 @@ export default {
   signup: function (user) {
     return axios.post("/api/user/signup", user)
   },
-  authenticate: () => axios.get("/api/user/authenticate")
+  authenticate: () => axios.get("/api/user/authenticate"),
+  signout: () => axios.get("/api/user/signout")
+
 };

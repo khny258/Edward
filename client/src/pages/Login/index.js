@@ -36,14 +36,19 @@ class Login extends Component {
 				})
 				.then(res => {
 					if (res.status === 200) {
+						console.log(res.status)
 						this.props.setLoading(false);
-						console.log(res.data)
 						this.props.setUser(res.data);
 					}
 				})
 				.catch(err => {
 					this.props.setLoading(false);
-					console.log(err);
+					
+					console.warn(err.response.data)
+					this.props.setAlertInfo({ 
+						theme:"warning",
+						message: err.response.data
+					});
 				});
 		}
 	};

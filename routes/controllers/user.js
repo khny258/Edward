@@ -14,8 +14,8 @@ module.exports = {
             
             // check error (including no user)
             if (error || !user) {
-					var err = new Error('Wrong email or password.');
-               next(err);
+               const err =  new Error('incorrect credentials, no user found')
+               next(err)
 
             // user found
 				} else {
@@ -25,7 +25,6 @@ module.exports = {
                req.session.user = user;
                //
 					req.user = user;
-					console.log('redirect');
 					return res.json(user);
 				}
          });
@@ -53,12 +52,14 @@ module.exports = {
    },
       
    signout: (req, res) => {
-
+      console.log('signed out:', req.session.user.email )
       // destroy session
       req.session.destroy();
-
-      // TO-DO: clear cookie on the client side
-      req.redirect('/api/user/login');
+      // clear cookie on the client side
+      res
+         .status(200)
+         .clearCookie('__id')
+         .json({msg:'successfuly signed out'});
    },
    
    // authenticate user
