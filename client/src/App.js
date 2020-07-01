@@ -5,29 +5,36 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
+import Navbar from './containers/Navbar';
+import Alert from './components/Alert';
 import { user as userAPI } from "./utils/API"
 import './App.css';
 
 function App() {
 	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(false);
+	const [alertInfo, setAlertInfo] = useState({message:"", theme:"success"});
 
    useEffect(() => {
+		// no catch, add if you want to check for it.
+		// only setting user if we got one, to avoid rerendering the page.
       userAPI.authenticate()
-         .then(res => setUser(res.data))
+			.then(res => res.data ? setUser(res.data) : 0);
    }, []);
    
 	return (
 		<>
-			<div style={{height:40, padding:10, color:"white", lineHeight:"20px"}} className="bg-success">Navbar</div>
 			<Router>
+				<Route render={ props => 
+					<Navbar user={user} setUser={setUser} {...props} />
+				} />
 				<Switch>
 					<Route
 						exact
 						path='/'
-						render={props => (
+						render={ props => (
 							<Login
-								{...{ user, setUser, setLoading }} 
+								{...{ user, setUser, setLoading, setAlertInfo }} 
 								{...props}
 							/>
 						)}
@@ -41,6 +48,9 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Router>
+			{ alertInfo.message 
+				? <Alert alertInfo={alertInfo} setAlertInfo={setAlertInfo} />
+				: <></> }
 		</>
 	);
 }

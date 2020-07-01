@@ -1,16 +1,10 @@
 {
   "name": "react-passport-mongo",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "react-passport-mongo-express",
   "main": "index.js",
-  "jest": {
-    "testPathIgnorePatterns": [
-      "<rootDir>/client/",
-      "<rootDir>/node_modules/"
-    ]
-  },
   "scripts": {
-    "test": "jest",
+    "test": "jest --no-cache",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": " node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
@@ -18,14 +12,22 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.9.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "concurrently": "^4.1.0",
     "coveralls": "^3.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "regenerator-runtime": "^0.13.5"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -40,5 +42,13 @@
   },
   "engines": {
     "node": "12.x"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/client/",
+      "<rootDir>/node_modules/"
+    ],
+    "coverageDirectory": "./tests/coverage",
+    "testEnvironment": "node"
   }
 }

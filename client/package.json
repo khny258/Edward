@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "coveralls": "^3.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -16,7 +17,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npm run coveralls",
+    "coveralls:dev": "react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "CI=true COVERALLS_PARALLEL=true react-scripts test --coverage && cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -33,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "identity-obj-proxy": "^3.0.0"
   }
 }

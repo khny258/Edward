@@ -3,8 +3,12 @@ node_js: "12"
 branches:
   only:
     - master
+before_install:
+  - export COVERALLS_PARALLEL=true
 scripts:
   - npm run coveralls
 cache:
   directories:
     - node_modules
+notifications:
+  webhooks: https://coveralls.io/webhook?repo_token=COVERALLS_REPO_TOKEN
