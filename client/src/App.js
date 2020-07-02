@@ -9,6 +9,7 @@ import Navbar from './containers/Navbar';
 import Alert from './components/Alert';
 import { user as userAPI } from "./utils/API"
 import './App.css';
+import Card from './components/Card';
 
 function App() {
 	const [user, setUser] = useState({});
@@ -31,7 +32,7 @@ function App() {
 				<Switch>
 					<Route
 						exact
-						path='/'
+						path='/login'
 						render={ props => (
 							<Login
 								{...{ user, setUser, setLoading, setAlertInfo }} 
@@ -39,12 +40,14 @@ function App() {
 							/>
 						)}
 					/>
-					<Route
+					{/* <Route
 						path='/login'
 						render={ () => <Redirect to="/" />}
-					/>
+					/> */}
 					<Route exact path='/signup' component={Signup} {...user} loading={loading} />
 					<ProtectedRoute exact path="/home" {...{user, loading, Component: Home} } />
+					<ProtectedRoute exact path="/inside" {...{user, loading, Component: Card} } />
+					<Route path='/' component={Signup} {...user} loading={loading} />
 					<Route component={NoMatch} />
 				</Switch>
 			</Router>
