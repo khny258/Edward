@@ -21,19 +21,19 @@ const Navbar = props => {
 	console.groupEnd();
 
 		return (
-			<div
-				style={{ padding: 4, color: 'white', lineHeight: '20px' }}
-				className='bg-success'
+			<nav className="navbar"
+				style={{color: 'white',  backgroundColor:"#0A0A23"}}
 			>
-				<span style={{ padding: 10, border: '1px solid transparent' }}>Navbar</span>
+			<Link to="/" style={{ color: '#FFF' }} className="navbar-brand" >Edward</Link>
             { props.user._id 
                ? <Button theme='dark' onClick={signout}>
                     <i className='fa fa-sign-out fa-1x' aria-hidden='true'></i>
                  </Button>
                : location.pathname === '/signup' 
-                  ? <Link to='/login'><Button>login</Button></Link>
+                  ? <Link to='/login'><Button>Login</Button></Link>
 				      : <Link to='/signup'><Button theme='primary'>Signup</Button></Link> }
-			</div>
+			
+			</nav>
 		);
 };
 export default Navbar;

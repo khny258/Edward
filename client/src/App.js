@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
-import Home from './pages/Home';
+import Home from './pages/UserHome';
+import Landing from './pages/Landing'
+import Dash from './pages/Dash'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
@@ -9,7 +11,6 @@ import Navbar from './containers/Navbar';
 import Alert from './components/Alert';
 import { user as userAPI } from "./utils/API"
 import './App.css';
-import Card from './components/Card';
 
 function App() {
 	const [user, setUser] = useState({});
@@ -46,8 +47,8 @@ function App() {
 					/> */}
 					<Route exact path='/signup' component={Signup} {...user} loading={loading} />
 					<ProtectedRoute exact path="/home" {...{user, loading, Component: Home} } />
-					<ProtectedRoute exact path="/inside" {...{user, loading, Component: Card} } />
-					<Route path='/' component={Signup} {...user} loading={loading} />
+					<ProtectedRoute exact path="/dash" {...{user, loading, Component: Dash} } />
+					<Route path='/' component={Landing} {...user} loading={loading} />
 					<Route component={NoMatch} />
 				</Switch>
 			</Router>
