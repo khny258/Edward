@@ -6,8 +6,8 @@ export default ( props ) => {
     
     return (
         <>
-        <div className={`spin ${style.container}`} >
-            Home
+        <div className={`${style.container}`} >
+            Dash - hello how are you?
         </div>
         <div className={style.user}>
             <h5>user:</h5>
