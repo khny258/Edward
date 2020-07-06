@@ -12,7 +12,10 @@ function Insights() {
         <div className="col-md-6 align-self-center">
             <center><h1><b>Meet Edward! The smarter sibling of the <a href="https://www.sec.gov/edgar/searchedgar/companysearch.html" target="_blank">SEC's Edgar</a></b></h1>
             <h5><b>Become a well-informed investor!</b></h5>
+
             <a className="btn btn-primary" href="/signup">Sign up for free</a> </center>
+            <button className="btn btn-primary">Signup for free</button> </center>
+
         </div>
       </div>
       <div className="row my-4 justify-content-md-center">
