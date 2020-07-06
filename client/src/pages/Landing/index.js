@@ -14,7 +14,6 @@ function Insights() {
             <h5><b>Become a well-informed investor!</b></h5>
 
             <a className="btn btn-primary" href="/signup">Sign up for free</a> </center>
-            <button className="btn btn-primary">Signup for free</button> </center>
 
         </div>
       </div>
