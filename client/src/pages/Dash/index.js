@@ -11,10 +11,10 @@ export default ( props ) => {
         </div>
         <div className={style.user}>
             <h5>user:</h5>
-            { Object.keys(props.user)
+            {/* { Object.keys(props.user)
                 .map( (field, i) => 
                     <p key={i}> <strong>{field}</strong>: {props.user[field]}</p>) 
-            }
+            } */}
         </div>
         
         </>
