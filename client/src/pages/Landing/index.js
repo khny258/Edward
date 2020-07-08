@@ -2,7 +2,7 @@ import React from "react";
 
 function Insights() {
   return (
-    <container>
+    <>
     <div className="container">
       <div className="row my-4">
 
@@ -44,7 +44,7 @@ function Insights() {
           </div>
         </div>
       </div>  
-    </container>
+    </>
   );
 }
 

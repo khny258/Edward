@@ -3,8 +3,9 @@ const scraperFunctions = require('../controllers/scraper')
 
 
 router.route('/edgar')
-   .post(scraperFunctions.edgar);
+   .get(scraperFunctions.edgar);
 
+module.exports = router;
 
 // function goToEdgar(cik) {
 // 	try {
