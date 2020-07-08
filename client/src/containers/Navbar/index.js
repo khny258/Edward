@@ -31,8 +31,7 @@ const Navbar = props => {
                  </Button>
                : location.pathname === '/login' 
                   ? <Link to='/signup'><Button theme='primary'>Signup</Button></Link>
-				      : <Link to='/login'><Button>Login</Button></Link> }
-			
+				      : <Link to='/login'><Button>Login</Button></Link> }			
 			</nav>
 		);
 };
