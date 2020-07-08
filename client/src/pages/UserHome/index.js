@@ -13,11 +13,11 @@ export default ( props ) => {
         </div>
         <div className={style.user}>
             <h5>user:</h5>
-            {/* { Object.keys(props.user)
+            { Object.keys(props.user)
                 .map( (field, i) => 
                     <p key={i}> <strong>{field}</strong>: {props.user[field]}</p>) 
-            } */}
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search" onSubmit></input>
+            }
+            <input className="form-control" type="text" placeholder="Search" aria-label="Search" onSubmit></input>
             <Link to="/dash">0001326801</Link>
 
         </div>

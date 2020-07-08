@@ -5,6 +5,7 @@ module.exports = function (error, req, res, next) {
       return next(error)
     }
     console.log(`error ${error.message} will be sent`);
-    res.status(401)
+    // switch status according to alert or pass the status from the route
+    // res.status(401)
     res.json(error.message)
   }
