@@ -22,7 +22,7 @@ function Insights() {
         </div>
 
       </div>
-        <div className="card-deck my-4 justify-content-md-center">
+        <div className="row card-deck my-4 justify-content-md-center">
           <div className="card col-md-3 mx-5 border-0">
             <img src="https://image.flaticon.com/icons/svg/2638/2638127.svg" className="card-img-top" alt="..."></img>
             <div className="card-body">
