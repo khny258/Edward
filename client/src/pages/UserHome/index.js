@@ -32,6 +32,7 @@ class UserHome extends Component {
         </div>
         <div className={`${style.user}`}>
             <h5>user:</h5>
+
             { Object.keys(this.props.user)
                 .map( (field, i) => 
                     <p key={i}> <strong>{field}</strong>: {this.props.user[field]}</p>) 

@@ -7,3 +7,6 @@
   transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
 }
 .transparent{opacity: 0;}
+.alert{
+  bottom:0px;
+}
