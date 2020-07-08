@@ -4,6 +4,9 @@ const user = require("./user");
 // '/api/user' route
 router.use('/user', user);
 
+// '/api/scraper' route
+router.use('/scraper', user);
+
 // calls to '/api/ <- redundant route, for initial testing
 router.route('/')
   .get((req, res) => res.json({ sample: 'data' }));

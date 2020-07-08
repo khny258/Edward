@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/UserHome';
 import Landing from './pages/Landing'
@@ -14,14 +14,21 @@ import './App.css';
 
 function App() {
 	const [user, setUser] = useState({});
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [alertInfo, setAlertInfo] = useState({message:"", theme:"success"});
 
    useEffect(() => {
-		// no catch, add if you want to check for it.
 		// only setting user if we got one, to avoid rerendering the page.
-      userAPI.authenticate()
-			.then(res => res.data ? setUser(res.data) : 0);
+		userAPI.authenticate()
+			.then(res => {
+				if(res.data ) setUser(res.data);
+				
+				setLoading(false);
+			})
+			.catch( e => {
+				setLoading(false);
+				setAlertInfo({message:e.response.data})
+			})
    }, []);
    
 	return (
@@ -45,7 +52,11 @@ function App() {
 						path='/login'
 						render={ () => <Redirect to="/" />}
 					/> */}
-					<Route exact path='/signup' component={Signup} {...user} loading={loading} />
+					{/* you could add app props as in the login page: {...{ 1st-prop-you-want-to-pass, 2nd-prop-you-want-to-pass, n-th-prop }} */}
+					<Route 
+						exact 
+						path='/signup' 
+						render={ props => <Signup user={user} loading={loading} setLoading={setLoading} setUser={setUser} setAlertInfo={setAlertInfo} {...props}/> } />
 					<ProtectedRoute exact path="/home" {...{user, loading, Component: Home} } />
 					<ProtectedRoute exact path="/dash" {...{user, loading, Component: Dash} } />
 					<Route path='/' component={Landing} {...user} loading={loading} />
