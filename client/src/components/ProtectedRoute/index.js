@@ -10,7 +10,7 @@ const ProtectedRoute = ({ Component, loading, user }) => {
               ? <Component {...{user}} />
               : loading === true 
                   ? <span className='spin' role="img" aria-label='loading'> ♻️ </span> 
-                      : <Redirect to='/' />
+                  : <Redirect to='/' />
           }}
       />
    )
