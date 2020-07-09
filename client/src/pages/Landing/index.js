@@ -12,7 +12,7 @@ function Insights() {
         <div className="col-md-6 align-self-center">
             <center><h1><b>Meet Edward! The smarter sibling of the <a href="https://www.sec.gov/edgar/searchedgar/companysearch.html" target="_blank" style={{color:"#a873fc"}}>SEC's Edgar</a></b></h1>
             <h5><b>Become a well-informed investor!</b></h5>
-            <a className="btn text-light" style={{backgroundColor:"#a873fc"}} href="/signup">Signup for free</a> </center>
+            <a className="btn text-light" style={{backgroundColor:"#a873fc"}} href="/signup">Sign up for free</a> </center>
         </div>
       </div>
       <div className="row my-4 justify-content-md-center">
