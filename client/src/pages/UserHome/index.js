@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import style from "./style.module.css";
 import { scraper as scraperAPI} from "../../utils/API";
+import SearchForm from "../../components/SearchForm";
 
 // export default ( props ) => {
 class UserHome extends Component {   
     constructor(props) {
-		super(props);
-    } 
+        super(props);
+    };
+    state ={
+        q:""
+    }; 
     handleCIK = event => {
 
         scraperAPI
@@ -23,7 +27,25 @@ class UserHome extends Component {
             console.warn(err.response.data)
         });        
     }
-
+    handleSearch = () => {
+        scraperAPI
+        .search({
+            searchText: this.state.q
+        })
+        .then(res => {
+            if (res.status === 200) {
+                console.log(res.status)
+            }
+        })
+        .catch(err => {
+            console.warn(err.response.data)
+        });   
+    }
+    handleFormSubmit = event =>{
+        event.preventDefault();
+        this.handleSearch();
+        console.log(event);
+    }
     render (){
         return (
         <>
@@ -39,7 +61,14 @@ class UserHome extends Component {
             }
         </div>
         <div>    
-            <input className="form-control" type="text" placeholder="Search" aria-label="Search" onSubmit></input>
+        {/* <form  onSubmit={this.handleFormSubmit}>
+        <input className="form-control" type="text" placeholder="Search" aria-label="Search" onChange={this.handleSearch}></input>
+        </form> */}
+
+        <SearchForm handleSearch={this.handleSearch}
+                handleFormSubmit={this.handleFormSubmit}
+                q={this.state.q}/>
+            
             <Link to="/dash"  onClick={this.handleCIK}>0001326801</Link>
 
         </div>
