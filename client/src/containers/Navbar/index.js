@@ -30,8 +30,8 @@ const Navbar = props => {
                     <i className='fa fa-sign-out fa-1x' aria-hidden='true'></i>
                  </Button>
                : location.pathname === '/login' 
-                  ? <Link to='/signup'><Button theme='primary'>Signup</Button></Link>
-				      : <Link to='/login'><Button>Login</Button></Link> }			
+                  ? <Link to='/signup'><Button theme='primary'>Sign Up</Button></Link>
+				      : <Link to='/login'><Button>Log In</Button></Link> }			
 			</nav>
 		);
 };
