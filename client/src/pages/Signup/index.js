@@ -79,7 +79,14 @@ class Signup extends Component {
 			<Container fluid>
 				<Row>
 					<Col size='12'>
-						<Card title='Edward'>
+						<br></br>
+						<center><h1>Financial data for everyone</h1></center>
+						<br></br>
+						<center>Look up information with <b>Edward</b> to help you make more informed decisions with your portfolio.</center>
+						<br></br>
+						<center><b>Sign up!</b></center>
+						<center><b>It’s quick and easy.</b></center>
+						<Card title='Create Your Account'>
 							<form className={styles.form} onSubmit={this.handleFormSubmit}>
 								<Input
 									value={this.state.username}
@@ -116,6 +123,8 @@ class Signup extends Component {
 								</FormBtn>
 							</form>
 						</Card>
+						<br></br>
+						<br></br>
 					</Col>
 				</Row>
 				{/* redirect on authenticated */}
