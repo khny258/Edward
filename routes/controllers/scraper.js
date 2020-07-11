@@ -19,7 +19,7 @@ module.exports = {
             await page.waitForSelector('table .report');
             // get href from the selector
             var scrapedData = await page.evaluate (() => {
-                let doc = document.querySelector('table .report').innerText;
+                let doc = document.querySelector('table .report');
                 return {
                     doc
                 }
@@ -50,12 +50,10 @@ module.exports = {
                 // get href from the selector
                 var scrapedData = await page.evaluate (() => {
                     let doc = document.querySelector('table').innerHTML;
-
                     return {
-                        doc
-
-                    }
+                        doc                    }
                 });
+                browser.close();
                 console.log(scrapedData);
                 scrapedData.doc = scrapedData.doc.split("</pre><hr><a href=\"/edgar/searchedgar")[0];
                 
@@ -68,4 +66,3 @@ module.exports = {
 
     }
 };
-
