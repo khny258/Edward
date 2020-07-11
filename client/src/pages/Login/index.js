@@ -58,7 +58,7 @@ class Login extends Component {
 			<Container fluid>
 				<Row>
 					<Col size='12'>
-						<Card title='Edward'>
+						<Card title='Sign In to Edward'>
 							<form>
 								<Input
 									value={this.state.email}
