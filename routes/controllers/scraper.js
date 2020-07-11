@@ -49,7 +49,7 @@ module.exports = {
                 await page.waitForSelector('table');
                 // get href from the selector
                 var scrapedData = await page.evaluate (() => {
-                    doc = document.querySelector('table').innerHTML;
+                    let doc = document.querySelector('table').innerHTML;
                     return {
                         doc                    }
                 });
