@@ -19,7 +19,7 @@ module.exports = {
             await page.waitForSelector('table .report');
             // get href from the selector
             var scrapedData = await page.evaluate (() => {
-                let doc = document.querySelector('table .report').innerText;
+                let doc = document.querySelector('table .report');
                 return {
                     doc
                 }
@@ -56,7 +56,7 @@ module.exports = {
                     }
                 });
                 console.log(scrapedData);
-                scrapedData.doc = scrapedData.doc.split("</pre><hr><a href=\"/edgar/searchedgar")[0];
+                scrapedData.doc = scrapedData.doc.split("Perform another Company-CIK Lookup")[0];
                 
                 res.json(scrapedData);
             })();
