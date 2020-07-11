@@ -25,6 +25,8 @@ module.exports = {
                     }
                 });
                 console.log(scrapedData);
+                scrapedData.doc = scrapedData.doc.split("</pre><hr><a href=\"/edgar/searchedgar")[0];
+                
                 res.json(scrapedData);
             })();
         } catch (err) {

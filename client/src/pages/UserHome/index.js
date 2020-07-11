@@ -64,18 +64,19 @@ class UserHome extends Component {
     render (){
         return (
         <>
-        <div className={`${style.container}`} >
-            Home
-        </div>
-        <div>    
-        <SearchForm handleSearch={this.handleSearch}
-                handleFormSubmit={this.handleFormSubmit}/>
-            
-
-        <div dangerouslySetInnerHTML={{__html: this.state.companies}}>
-            {/* {this.state.companies} */}
-         </div>   
-
+        <div className="container">
+            <div className='row mt-3'>
+                <div className="col-md-12">    
+                    <SearchForm handleSearch={this.handleSearch}
+                            handleFormSubmit={this.handleFormSubmit}/>
+                </div>   
+            </div>
+            <div className='row mt-3'>
+                <div className="col-md-12">    
+                    <div dangerouslySetInnerHTML={{__html: this.state.companies}}>
+                    </div>   
+                </div>
+            </div> 
         </div>
         </>
     )
