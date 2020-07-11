@@ -3,7 +3,11 @@ const scraperFunctions = require('../controllers/scraper')
 
 
 router.route('/edgar')
-   .get(scraperFunctions.edgar);
+   .post(scraperFunctions.edgar);
+
+   router.route('/companySearch')
+   .post(scraperFunctions.companySearch);
+
 
 module.exports = router;
 

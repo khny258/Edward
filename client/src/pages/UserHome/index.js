@@ -9,9 +9,7 @@ class UserHome extends Component {
     constructor(props) {
         super(props);
     };
-    state ={
-        q:""
-    }; 
+
     handleCIK = event => {
 
         scraperAPI
@@ -67,7 +65,7 @@ class UserHome extends Component {
 
         <SearchForm handleSearch={this.handleSearch}
                 handleFormSubmit={this.handleFormSubmit}
-                q={this.state.q}/>
+/>
             
             <Link to="/dash"  onClick={this.handleCIK}>0001326801</Link>
 
