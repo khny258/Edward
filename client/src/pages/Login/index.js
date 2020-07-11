@@ -58,27 +58,28 @@ class Login extends Component {
 			<Container fluid>
 				<Row>
 					<Col size='12'>
-						<Card title='Login'>
+						<Card title='Edward'>
 							<form>
 								<Input
 									value={this.state.email}
 									onChange={this.handleInputChange}
 									name='email'
-									placeholder='email (required)'
+									placeholder='Email'
 								/>
 								<Input
 									value={this.state.password}
 									onChange={this.handleInputChange}
 									name='password'
-									placeholder='(required)'
+									placeholder='Password'
 									type='password'
 								/>
 
 								<FormBtn
 									disabled={!(this.state.email && this.state.password)}
+									theme='dark'
 									onClick={this.handleFormSubmit}
 								>
-									Log in
+									Log In
 								</FormBtn>
 							</form>
 						</Card>

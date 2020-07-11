@@ -79,40 +79,40 @@ class Signup extends Component {
 			<Container fluid>
 				<Row>
 					<Col size='12'>
-						<Card title='Signup'>
+						<Card title='Edward'>
 							<form className={styles.form} onSubmit={this.handleFormSubmit}>
 								<Input
 									value={this.state.username}
 									onChange={this.handleInputChange}
 									name='username'
-									placeholder='username (required)'
+									placeholder='Username (Required)'
 								/>
 								<Input
 									value={this.state.email}
 									onChange={this.handleInputChange}
 									name='email'
-									placeholder='email (required)'
+									placeholder='Email (Required)'
 								/>
 								<Input
 									value={this.state.password}
 									onChange={this.handleInputChange}
 									name='password'
-									placeholder='(required)'
+									placeholder='Password (Required)'
 									type='password'
 								/>
 								<Input
 									value={this.state.passwordConf}
 									onChange={this.handleInputChange}
 									name='passwordConf'
-									placeholder='(required)'
+									placeholder='Retype Password (Required)'
 									type='password'
 								/>
 
 								<FormBtn
 									disabled={!(this.state.email && this.state.password && this.state.passwordConf)}
-									theme='primary'
+									theme='dark'
 								>
-									signup
+									Sign Up
 								</FormBtn>
 							</form>
 						</Card>
