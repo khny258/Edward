@@ -53,7 +53,6 @@ module.exports = {
 
                     return {
                         doc
-
                     }
                 });
                 console.log(scrapedData);
