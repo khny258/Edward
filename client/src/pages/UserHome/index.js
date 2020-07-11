@@ -77,6 +77,7 @@ class UserHome extends Component {
                     </div>   
                 </div>
             </div> 
+        </div>
         </>
     )
 }
