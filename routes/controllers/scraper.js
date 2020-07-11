@@ -49,12 +49,15 @@ module.exports = {
                 await page.waitForSelector('table');
                 // get href from the selector
                 var scrapedData = await page.evaluate (() => {
-                    let doc = document.querySelector('table').innerHTML;
-
+                    let docs = Array.from(document.querySelector('table tr td'));
+                    doc = document.querySelector('table').innerHTML;
+                    info = docs.map(td=>td.innerText)
                     return {
-                        doc
+                        doc,
+                        info
                     }
                 });
+                browser.close();
                 console.log(scrapedData);
                 scrapedData.doc = scrapedData.doc.split("Perform another Company-CIK Lookup")[0];
                 
