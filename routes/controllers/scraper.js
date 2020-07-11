@@ -14,7 +14,7 @@ module.exports = {
                 const browser = await puppeteer.launch();
                 const page = await browser.newPage();
                 await page.goto('https://www.sec.gov/edgar/searchedgar/cik.htm');
-                await page.type('#company', 'face', req.body.searchText);
+                await page.type('#company', req.body.searchText);
                 page.keyboard.press('Enter');
                 await page.waitForSelector('table');
                 // get href from the selector
@@ -25,10 +25,12 @@ module.exports = {
                     }
                 });
                 console.log(scrapedData);
+                res.json(scrapedData);
             })();
         } catch (err) {
             console.log(err);
         }
+
 
     }
 };

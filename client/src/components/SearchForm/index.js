@@ -1,12 +1,9 @@
 import React from "react";
 
-function SearchForm({ q, handleSearch, handleFormSubmit }) {
+function SearchForm({q, handleSearch, handleFormSubmit }) {
   return (
     <form>
       <div className="form-group">
-        <label htmlFor="Query">
-          <strong>Company Name</strong>
-        </label>
         <input
           className="form-control"
           id="Title"
