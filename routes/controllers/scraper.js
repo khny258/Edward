@@ -51,11 +51,8 @@ module.exports = {
                 var scrapedData = await page.evaluate (() => {
                     let docs = Array.from(document.querySelector('table tr td'));
                     doc = document.querySelector('table').innerHTML;
-                    info = docs.map(td=>td.innerText)
                     return {
-                        doc,
-                        info
-                    }
+                        doc                    }
                 });
                 browser.close();
                 console.log(scrapedData);
