@@ -4,7 +4,7 @@ function SearchForm({q, handleSearch, handleFormSubmit }) {
   return (
     <form>
       <div className="form-row">
-        <div className="col-md-10">
+        <div className="col-md-11">
           <input
             className="form-control"
             id="Title"
@@ -16,7 +16,7 @@ function SearchForm({q, handleSearch, handleFormSubmit }) {
             required
           />
       </div>
-      <div className="col-md-2">
+      <div className="col-md-1">
         <button
           onClick={handleFormSubmit}
           type="submit"
