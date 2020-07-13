@@ -26,9 +26,12 @@ const Navbar = props => {
 			>
 			<Link to="/home" style={{ color: '#FFF' }} className="navbar-brand" >Edward</Link>
             { props.user._id 
-               ? <Button theme='dark' onClick={signout}>
-                    <i className='fa fa-sign-out fa-1x' aria-hidden='true'></i>
-                 </Button>
+               ?<> 
+			   		Hi {props.user.email}
+					<Button theme='dark' onClick={signout}>
+                    	<i className='fa fa-sign-out fa-1x' aria-hidden='true'></i>
+                 	</Button>
+				</>
                : location.pathname === '/login' 
                   ? <Link to='/signup'><Button theme='primary'>Sign Up</Button></Link>
 				      : <Link to='/login'><Button>Log In</Button></Link> }			

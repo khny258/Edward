@@ -82,6 +82,10 @@ class UserHome extends Component {
             <div className='row mt-3'>
                 <div className="col-md-12">    
                     {this.state.companies.length ? (
+                        <>
+                        <h4>Your search resulted in {this.state.companies.length} hits.
+                        </h4>
+
                         <List>
                             {this.state.companies.map(company => (
                                 <CompaniesList
@@ -89,9 +93,18 @@ class UserHome extends Component {
                                 company={company.companyName}
                                 cik={company.cik}
                                 handleCIK={this.handleCIK}
+                                Button={() => (
+                                    <button
+                                      onClick={() => this.handleCIK()}
+                                      className="btn btn-primary ml-2"
+                                    >
+                                      Save
+                                    </button>
+                                  )}
                                 />
                                 ))}
                         </List>
+                        </>
                         ) : (
                         <h2 className="text-center">{this.state.message}</h2>
                     )}                    
