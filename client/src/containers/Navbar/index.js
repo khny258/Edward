@@ -27,7 +27,7 @@ const Navbar = props => {
 			<Link to="/home" style={{ color: '#FFF' }} className="navbar-brand" >Edward</Link>
             { props.user._id 
                ?<> 
-			   		Hi {props.user.email}
+			   		Hi {props.user.firstname}
 					<Button theme='dark' onClick={signout}>
                     	<i className='fa fa-sign-out fa-1x' aria-hidden='true'></i>
                  	</Button>
