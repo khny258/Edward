@@ -56,7 +56,7 @@ class Login extends Component {
 	render() {
 		return (
 			<Container fluid>
-				<Row>
+				<Row className='m-auto'>
 					<Col size='12'>
 						<Card title='Sign In to Edward'>
 							<form>
