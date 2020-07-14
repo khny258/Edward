@@ -11,6 +11,8 @@ class Signup extends Component {
 		super(props);
 		this.state = {
 			email: '',
+			firstname: '',
+			lastname: '',
 			username: '',
 			password: '',
 			passwordConf: ''
@@ -48,6 +50,7 @@ class Signup extends Component {
 		userAPI
 				.signup({
 					firstname: this.state.username.trim(),
+					lastname: this.state.username.trim(),
 					email: this.state.email.trim(),
 					password: this.state.password.trim(),
 					passwordConf: this.state.passwordConf.trim()
@@ -88,6 +91,18 @@ class Signup extends Component {
 						<center><b>It’s quick and easy.</b></center>
 						<Card title='Create Your Account'>
 							<form className={styles.form} onSubmit={this.handleFormSubmit}>
+								<Input
+									value={this.state.firstname}
+									onChange={this.handleInputChange}
+									name='firstname'
+									placeholder='First Name (Required)'
+								/>
+								<Input
+									value={this.state.lastname}
+									onChange={this.handleInputChange}
+									name='lastname'
+									placeholder='Last Name (Required)'
+								/>
 								<Input
 									value={this.state.username}
 									onChange={this.handleInputChange}
