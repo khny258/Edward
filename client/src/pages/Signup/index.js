@@ -12,8 +12,6 @@ class Signup extends Component {
 		this.state = {
 			email: '',
 			firstname: '',
-			lastname: '',
-			username: '',
 			password: '',
 			passwordConf: ''
 		};
@@ -45,12 +43,11 @@ class Signup extends Component {
       // set error alert to user
       return this.props.setAlertInfo({theme:"warning", message:"Your password fields do not match."})
     }
-
+	console.log(this.state.firstname, "this is the name before this")
     // if good to go
 		userAPI
 				.signup({
-					firstname: this.state.username.trim(),
-					lastname: this.state.username.trim(),
+					firstname: this.state.firstname.trim(),
 					email: this.state.email.trim(),
 					password: this.state.password.trim(),
 					passwordConf: this.state.passwordConf.trim()
@@ -96,18 +93,6 @@ class Signup extends Component {
 									onChange={this.handleInputChange}
 									name='firstname'
 									placeholder='First Name (Required)'
-								/>
-								<Input
-									value={this.state.lastname}
-									onChange={this.handleInputChange}
-									name='lastname'
-									placeholder='Last Name (Required)'
-								/>
-								<Input
-									value={this.state.username}
-									onChange={this.handleInputChange}
-									name='username'
-									placeholder='Username (Required)'
 								/>
 								<Input
 									value={this.state.email}
