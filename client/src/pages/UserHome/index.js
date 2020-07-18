@@ -18,17 +18,19 @@ class UserHome extends Component {
         q: "",
         message: ""
     };
+
     handleCIK = event => {
         event.preventDefault();
         scraperAPI
         .scrape({
-            cik: event.target.name,
+            cik: event.target.value,
         })
         .then(res => {
             if (res.status === 200) {
                 console.log(res.status)
+                console.log(res)
                 this.setState({
-                    financialStatement: res.data.doc
+                    financialStatement: res.data[0].rptOwnerName
                   })
             }
         })
@@ -80,9 +82,10 @@ class UserHome extends Component {
                 </div>   
             </div>
             <div className='row mt-3'>
-                <div className="col-md-12">    
+                <div className="col-md-12 text-light text-center">    
                     {this.state.companies.length ? (
                         <>
+                        <div className={`${style.freshTable}`}>
                         <h4>Your search resulted in {this.state.companies.length} hits.
                         </h4>
                         <Row className="flex-wrap-reverse">
@@ -101,11 +104,12 @@ class UserHome extends Component {
                                 key={company.id}
                                 company={company.companyName}
                                 cik={company.cik}
-                                handleCIK={this.handleCIK}
+                                // handleCIK={this.handleCIK}
                                 Button={() => (
                                     <button
-                                      onClick={() => this.handleCIK()}
-                                      className="btn btn-primary ml-2"
+                                      onClick={this.handleCIK}
+                                      className="btn btn-primary"
+                                      value={company.cik}
                                     >
                                       Add
                                     </button>
@@ -113,6 +117,7 @@ class UserHome extends Component {
                                 />
                                 ))}
                         </List>
+                        </div>
                         </>
                         ) : (
                         <h2 className="text-center">{this.state.message}</h2>

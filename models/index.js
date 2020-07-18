@@ -1,3 +1,5 @@
 module.exports = {
-    User: require("./User")
+    User: require("./User"),
+    EdgarTransactions: require("./EdgarTransactions"),
+    EdgarFinancials: require("./EdgarFinancials")    
 }
