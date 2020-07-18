@@ -39,11 +39,12 @@ module.exports = {
 
    // signup user
    create: (req, res) => {
-   
+   console.log("reached create function")
       // create user in db
       db.User.create({
          email: req.body.email,
-         password: req.body.password
+         password: req.body.password,
+         firstname: req.body.firstname
       })
 
       // redirect to login
