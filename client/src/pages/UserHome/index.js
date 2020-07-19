@@ -6,6 +6,7 @@ import SearchForm from "../../components/SearchForm";
 import CompaniesList from "../../components/CompaniesList";
 import {List} from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
+import Ellipsis from '@bit/joshk.react-spinners-css.ellipsis';
 
 // export default ( props ) => {
 class UserHome extends Component {   
@@ -16,14 +17,17 @@ class UserHome extends Component {
         companies: [],
         financialStatement:[],
         q: "",
-        message: ""
+        message: "",
+        loading: false
     };
 
     handleCIK = event => {
         event.preventDefault();
         scraperAPI
         .scrape({
-            cik: event.target.value,
+            cik: this.state.companies[event.target.value].cik,
+            userId: this.props.user._id,
+            companyName:  this.state.companies[event.target.value].companyName
         })
         .then(res => {
             if (res.status === 200) {
@@ -57,7 +61,8 @@ class UserHome extends Component {
                 console.log(res.status)
                 console.log(res.data)
                 this.setState({
-                    companies: res.data
+                    companies: res.data,
+                    loading: false
                   })
 
             }
@@ -69,6 +74,7 @@ class UserHome extends Component {
 
     handleFormSubmit = event =>{
         event.preventDefault();
+        this.setState({loading: true})
         this.companySearch();
     }
     render (){
@@ -76,12 +82,18 @@ class UserHome extends Component {
         <>
         <div className="container">
             <div className='row mt-3'>
-                <div className="col-md-12">    
+                <div className="col-md-12">
+
                     <SearchForm handleSearch={this.handleSearch}
                             handleFormSubmit={this.handleFormSubmit}/>
                 </div>   
             </div>
             <div className='row mt-3'>
+                <div className="col-md-12 text-light text-center">  
+                    <div >
+                        {this.state.loading ? <Ellipsis color='#A873FC'/>: <h2>{this.state.message}</h2> }
+                    </div>
+                </div>
                 <div className="col-md-12 text-light text-center">    
                     {this.state.companies.length ? (
                         <>
@@ -104,12 +116,11 @@ class UserHome extends Component {
                                 key={company.id}
                                 company={company.companyName}
                                 cik={company.cik}
-                                // handleCIK={this.handleCIK}
                                 Button={() => (
                                     <button
                                       onClick={this.handleCIK}
                                       className="btn btn-primary"
-                                      value={company.cik}
+                                      value={company.id}
                                     >
                                       Add
                                     </button>
@@ -123,11 +134,9 @@ class UserHome extends Component {
                         <h2 className="text-center">{this.state.message}</h2>
                     )}                    
                 </div>
-                <div className="col-md-12" >
-                           {this.state.financialStatement}
-                </div>
+
             </div> 
-            
+           
         </div>
         </>
     )

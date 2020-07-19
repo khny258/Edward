@@ -3,9 +3,8 @@
   color: #e74944;
 }
 .button{
-  /* min-width:70px; */
+
   border: 0;
-  
   background-color: #a873fc;  
 }
 .button:hover{

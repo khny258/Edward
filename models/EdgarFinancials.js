@@ -1,6 +1,14 @@
 var mongoose = require('mongoose');
 
 var EdgarFinancialsSchema = new mongoose.Schema({
+    userId: {
+      type: String,
+      trim: true      
+    },
+    companyName: {
+      type: String,
+      trim: true      
+    },
     cik: {
         type: String,
         trim: true      
