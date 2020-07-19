@@ -30,7 +30,6 @@
     "regenerator-runtime": "^0.13.5"
   },
   "dependencies": {
-    "@bit/joshk.react-spinners-css.ellipsis": "^1.2.1",
     "bcrypt": "^5.0.0",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
@@ -42,7 +41,7 @@
     "mongoose": "^5.9.20",
     "passport": "^0.4.1",
     "puppeteer": "^5.0.0",
-    "react-spinners-css": "^1.2.2",
+    "react-vis": "^1.11.7",
     "request-promise": "^4.2.5"
   },
   "engines": {
