@@ -6,7 +6,6 @@ import SearchForm from "../../components/SearchForm";
 import CompaniesList from "../../components/CompaniesList";
 import {List} from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
-import Ellipsis from '@bit/joshk.react-spinners-css.ellipsis';
 
 // export default ( props ) => {
 class UserHome extends Component {   
@@ -91,7 +90,7 @@ class UserHome extends Component {
             <div className='row mt-3'>
                 <div className="col-md-12 text-light text-center">  
                     <div >
-                        {this.state.loading ? <Ellipsis color='#A873FC'/>: <h2>{this.state.message}</h2> }
+                        {this.state.loading ? <img className="img-responsive" width="75px" src="./ellipsis-spinner.gif"/>: <></> }
                     </div>
                 </div>
                 <div className="col-md-12 text-light text-center">    

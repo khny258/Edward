@@ -41,6 +41,7 @@
     "mongoose": "^5.9.20",
     "passport": "^0.4.1",
     "puppeteer": "^5.0.0",
+    "react-vis": "^1.11.7",
     "request-promise": "^4.2.5"
   },
   "engines": {
