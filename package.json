@@ -42,6 +42,7 @@
     "mongoose": "^5.9.20",
     "passport": "^0.4.1",
     "puppeteer": "^5.0.0",
+    "react-spinners-css": "^1.2.2",
     "request-promise": "^4.2.5"
   },
   "engines": {
