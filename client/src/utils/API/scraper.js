@@ -2,10 +2,10 @@ import axios from "axios";
 
 
 export default {
-    scrape: function (cik) {
+    scrape: function (scraperInfo) {
        console.log('reached handle cik');
-       console.log(cik);
-      return axios.post("/api/scraper/getInfo", cik)
+       console.log(scraperInfo);
+      return axios.post("/api/scraper/getInfo", scraperInfo)
     },
     search: function (searchText) {
     console.log('reached here')

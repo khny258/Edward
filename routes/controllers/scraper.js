@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
+const cheerio = require('cheerio');
+
 const edgarTransactions = require('./edgarTransactions');
+const edgarFinancials = require('./edgarFinancials');
 
 module.exports = {
 
@@ -21,8 +24,9 @@ module.exports = {
             });
 
 
-            // var formFourCount = 0;
             var info = [];
+            var filingData = 0;
+            var financials = {};
             for (i=0;i<mainDirectory.doc.directory.item.length;i++) {
                 console.log("main directory name: "+mainDirectory.doc.directory.item[i].name);
                 await page.goto('https://www.sec.gov/Archives/edgar/data/'+req.body.cik+'/'+mainDirectory.doc.directory.item[i].name+'/index.json');
@@ -39,42 +43,83 @@ module.exports = {
                         xmlFileName = subDirectory.doc.directory.item[j].name;
                         console.log("xmlFileName: "+xmlFileName);
                         await page.goto('https://www.sec.gov/Archives/edgar/data/'+req.body.cik+'/'+mainDirectory.doc.directory.item[i].name+'/'+xmlFileName);
-                        var scrapedData = await page.evaluate (() => {
-                            let documentType = ''
-                            let transactionCode = ''
 
-                            try {
-                            console.log('reached3');
-                            documentType = document.querySelector("documentType").textContent;
-                            transactionCode = document.querySelector("transactionCode").textContent;
+                        if (xmlFileName.includes('FilingSummary') && filingData === 0) {
+                            console.log('filingsummary found');
+                            const filingSummaryContent = await page.content();
+                            var $ = cheerio.load(filingSummaryContent,{
+                                xmlMode: true
+                            });
 
-                            console.log(documentType);
-                            } catch(err) {
-                                console.log('folder did not contain form 4');
+                            if($('InputFiles')[0].children[0].next.attribs.doctype ==='10-Q') {
+
+                                var fileName =$('InputFiles')[0].children[0].next.attribs.original;
+                                fileName = fileName.replace('.','_');
+                                console.log(fileName);
+
+                                await page.goto('https://www.sec.gov/Archives/edgar/data/'+req.body.cik+'/'+mainDirectory.doc.directory.item[i].name+'/'+fileName+'.xml', {
+                                timeout: 200000});
+                                const Filingcontent = await page.content();
+                                var $ = cheerio.load(Filingcontent,{
+                                    xmlMode: true
+                                });                            
+
+
+                                financials.cashOnCash = $('us-gaap\\:CashAndCashEquivalentsAtCarryingValue')[0].children[0].data;
+                                financials.cashOnCashDate= $('us-gaap\\:CashAndCashEquivalentsAtCarryingValue')[0].attribs.contextRef;
+                                financials.assetsCurrent = $('us-gaap\\:AssetsCurrent')[0].children[0].data;
+                                financials.assetsCurrentDate = $('us-gaap\\:AssetsCurrent')[0].attribs.contextRef;
+                                financials.liabilitiesCurrent = $('us-gaap\\:LiabilitiesCurrent')[0].children[0].data;
+                                financials.liabilitiesCurrentDate = $('us-gaap\\:LiabilitiesCurrent')[0].attribs.contextRef;
+                                financials.eps = $('us-gaap\\:EarningsPerShareDiluted')[0].children[0].data;
+                                financials.epsDate = $('us-gaap\\:EarningsPerShareDiluted')[0].attribs.contextRef; 
+                                
+                                filingData = 1;
                             }
+                        }
+                        else {
+                            var scrapedData = await page.evaluate (() => {
+                                let documentType = ''
+                                let transactionCode = ''
 
-                            if (documentType === '4' && (transactionCode === 'S' || transactionCode === 'P' )) {
-                                let rptOwnerName = document.querySelector("rptOwnerName").textContent;
-                                let transactionShares = document.querySelector("transactionShares value").textContent;
-                                let transactionDate = document.querySelector("transactionDate value").textContent;
-                                let transactionPricePerShare = document.querySelector("transactionPricePerShare value").textContent;
-                                let transactionCode = document.querySelector("transactionCode").textContent;
-                                return {
-                                    rptOwnerName,
-                                    transactionShares,
-                                    transactionDate,
-                                    transactionPricePerShare,
-                                    transactionCode
+                                try {
+                                console.log('reached for other xml docs');
+                                documentType = document.querySelector("documentType").textContent;
+                                transactionCode = document.querySelector("transactionCode").textContent;
+
+                                console.log(documentType);
+                                } catch(err) {
+                                    console.log('folder did not contain form 4');
                                 }
-                            }
 
-                        
-            });
-            if (scrapedData != undefined) {
-            info.push(scrapedData);
-        }
+                                if (documentType === '4' && (transactionCode === 'S' || transactionCode === 'P' )) {
+                                    let rptOwnerName = document.querySelector("rptOwnerName").textContent;
+                                    let transactionShares = document.querySelector("transactionShares value").textContent;
+                                    let transactionDate = document.querySelector("transactionDate value").textContent;
+                                    let transactionPricePerShare = document.querySelector("transactionPricePerShare value").textContent;
+                                    let transactionCode = document.querySelector("transactionCode").textContent;
+                                    return {
+                                        rptOwnerName,
+                                        transactionShares,
+                                        transactionDate,
+                                        transactionPricePerShare,
+                                        transactionCode
+                                    }
+                                }
+                                
+                            
+                            });
+                            if (scrapedData != undefined && info.length <3) {
+                                info.push(scrapedData);
+                                console.log('info pushed');
+                                }
+                            
+                        }
+
         }};
-            if (info.length ===3) {
+            console.log('info length:',info.length);
+            console.log('filingData:',filingData);
+            if (info.length ===3 && filingData ===1) {
                 break;
             }
             
@@ -82,23 +127,23 @@ module.exports = {
         }
             browser.close();
             console.log(info);
-            // edgarTransactions.create
 
+            for (i=0;i<info.length;i++) {
+                info[i].cik = req.body.cik;
+                info[i].companyName = req.body.companyName;
+                info[i].userId = req.body.userId;
+                edgarTransactions
+                .create(info[i]);
+            }
 
-            edgarTransactions
-            .create({
-                cik: '000112345',
-                rptOwnerName: 'Brin Sergey',
-                transactionShares: '947',
-                transactionDate: '2015-10-02',
-                transactionPricePerShare: '600',
-                transactionCode: 'S'
-            });
-
+            financials.cik = req.body.cik;
+            financials.companyName = req.body.companyName;
+            financials.userId = req.body.userId;
+            edgarFinancials.create(financials);
 
             
             console.log('done');
-            // res.json(info);
+
 		})();
 	} catch (err) {
 		console.log(err);

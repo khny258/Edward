@@ -13,7 +13,7 @@ export function DeleteBtn(props) {
 
 export function Button(props) {
   return (
-    <span onClick={props.onClick} className={`btn btn-${ props.theme ? props.theme : "success" } ${ styles.button } ${props.className}` }  role="button">
+    <span onClick={props.onClick} className={`btn text-light ${ styles.button } ${props.className}` }  role="button">
       {props.children}
     </span>
   );
