@@ -143,6 +143,7 @@ module.exports = {
 
             
             console.log('done');
+            res.json('done');
 
 		})();
 	} catch (err) {

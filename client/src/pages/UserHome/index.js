@@ -45,6 +45,10 @@ class UserHome extends Component {
 
     handleCIK = event => {
         event.preventDefault();
+        this.setState({
+            loading: true
+          })
+
         scraperAPI
         .scrape({
             cik: this.state.companies[event.target.value].cik,
@@ -56,7 +60,7 @@ class UserHome extends Component {
                 console.log(res.status)
                 console.log(res)
                 this.setState({
-                    financialStatement: res.data[0].rptOwnerName
+                    loading: false
                   })
             }
         })
