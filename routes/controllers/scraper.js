@@ -12,7 +12,12 @@ module.exports = {
 
 	try {
 		(async () => {
-			const browser = await puppeteer.launch();
+			const browser = await puppeteer.launch({
+                args: [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                  ],
+                });
 			const page = await browser.newPage();
 			await page.goto('https://www.sec.gov/Archives/edgar/data/'+req.body.cik+'/index.json');
 
@@ -216,6 +221,7 @@ module.exports = {
                         doc
                     };
                 });
+                browser.close();
                 scrapedData.doc = scrapedData.doc.split("Company Name")[1];
                 scrapedData.doc = scrapedData.doc.split("Perform another current events analysis?")[0];
 

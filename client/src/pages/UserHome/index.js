@@ -8,18 +8,27 @@ import LatestFilingList from "../../components/LatestFilingList";
 import {List} from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 
+let state = {
+    companies: [],
+    financialStatement:[],
+    q: "",
+    latestFilings: [],
+    loading: false,
+};
+
 // export default ( props ) => {
 class UserHome extends Component {   
     constructor(props) {
         super(props);
+        this.state = state;
     };
-    state = {
-        companies: [],
-        financialStatement:[],
-        q: "",
-        latestFilings: [],
-        loading: false
-    };
+
+    componentWillUnmount() {
+        // Remember state for the next mount
+        state = this.state;
+      }
+      
+
     latestFilingInfo = () => {
         scraperAPI
         .scrapeLatest()
@@ -39,8 +48,11 @@ class UserHome extends Component {
     }
 
     componentDidMount() {
+        console.log("mounting time length",this.state.latestFilings.length);
+        if (this.state.latestFilings.length===0) { 
         this.latestFilingInfo();
         this.setState({loading: true});
+          }
     }
 
     handleCIK = event => {
