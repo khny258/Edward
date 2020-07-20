@@ -7,11 +7,11 @@ function CompaniesList({ company, cik, Button}) {
         <ListItem>
             <Row className="flex-wrap-reverse">
                 <Col size="md-6">
-                    {/* <p className="font-italic"><a href="#" onClick={handleCIK} name={cik}>{company}</a></p> */}
-                    <p className="font-italic">{company}</p>
+                  
+                    <p>{company}</p>
                 </Col>
                 <Col size="md-4">
-                    <p className="font-italic">{cik}</p>
+                    <p>{cik}</p>
                 </Col>
                 <Col size="md-2">
                     <Button />
