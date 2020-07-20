@@ -11,6 +11,10 @@ export default {
     console.log('reached here')
    console.log(searchText);
    return axios.post("/api/scraper/companySearch", searchText)  
+  },
+  scrapeLatest: function () {
+    console.log('reached get latest');
+   return axios.post("/api/scraper/getLatest")  
   }
 };
   

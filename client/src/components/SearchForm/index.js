@@ -20,7 +20,8 @@ function SearchForm({q, handleSearch, handleFormSubmit }) {
         <button
           onClick={handleFormSubmit}
           type="submit"
-          className="btn btn-danger">
+          className="btn text-light"
+          style={{backgroundColor:"#a873fc"}}>
           Search
         </button>
       </div>

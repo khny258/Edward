@@ -4,6 +4,7 @@ import style from "./style.module.css";
 import { scraper as scraperAPI} from "../../utils/API";
 import SearchForm from "../../components/SearchForm";
 import CompaniesList from "../../components/CompaniesList";
+import LatestFilingList from "../../components/LatestFilingList";
 import {List} from "../../components/List";
 import { Col, Row, Container } from "../../components/Grid";
 
@@ -16,12 +17,38 @@ class UserHome extends Component {
         companies: [],
         financialStatement:[],
         q: "",
-        message: "",
+        latestFilings: [],
         loading: false
     };
+    latestFilingInfo = () => {
+        scraperAPI
+        .scrapeLatest()
+        .then(res => {
+            if (res.status === 200) {
+                console.log(res)
+                this.setState({
+                    latestFilings: res.data,
+                    loading: false
+                  })
+
+            }     
+        })
+        .catch(err => {
+            console.warn(err.response.data)
+        }); 
+    }
+
+    componentDidMount() {
+        this.latestFilingInfo();
+        this.setState({loading: true});
+    }
 
     handleCIK = event => {
         event.preventDefault();
+        this.setState({
+            loading: true
+          })
+
         scraperAPI
         .scrape({
             cik: this.state.companies[event.target.value].cik,
@@ -33,7 +60,7 @@ class UserHome extends Component {
                 console.log(res.status)
                 console.log(res)
                 this.setState({
-                    financialStatement: res.data[0].rptOwnerName
+                    loading: false
                   })
             }
         })
@@ -90,15 +117,17 @@ class UserHome extends Component {
             <div className='row mt-3'>
                 <div className="col-md-12 text-light text-center">  
                     <div >
-                        {this.state.loading ? <img className="img-responsive" width="75px" src="./ellipsis-spinner.gif"/>: <></> }
+                        {this.state.loading ? <span className='text-dark'>Edward is on a quick run  <img className="img-responsive" width="75px" src="./ellipsis-spinner.gif"/></span> : <></> }
                     </div>
                 </div>
-                <div className="col-md-12 text-light text-center">    
+                <div className="col-md-12 text-dark text-center">    
                     {this.state.companies.length ? (
                         <>
-                        <div className={`${style.freshTable}`}>
-                        <h4>Your search resulted in {this.state.companies.length} hits.
-                        </h4>
+                        <Row className="flex-wrap-reverse">
+                            <Col size="md-12"><h4><b>Your search resulted in {this.state.companies.length} hits.</b></h4></Col>
+                        </Row>
+
+                        <div className='border'>
                         <Row className="flex-wrap-reverse">
                             <Col size="md-6">
                                 <b>Company Name</b>
@@ -109,6 +138,7 @@ class UserHome extends Component {
                             <Col size="md-2">
                             </Col>
                         </Row>
+
                         <List>
                             {this.state.companies.map(company => (
                                 <CompaniesList
@@ -118,8 +148,9 @@ class UserHome extends Component {
                                 Button={() => (
                                     <button
                                       onClick={this.handleCIK}
-                                      className="btn btn-primary"
+                                      className="btn"
                                       value={company.id}
+                                      style={{borderColor: '#6f2da8', color: '#6f2da8'} }
                                     >
                                       Add
                                     </button>
@@ -130,7 +161,53 @@ class UserHome extends Component {
                         </div>
                         </>
                         ) : (
-                        <h2 className="text-center">{this.state.message}</h2>
+                        <>
+                        
+                        {this.state.latestFilings.length ? (
+                        <>
+                            <Row className="flex-wrap-reverse">
+                            <Col size="md-3">
+                                <h4><b className="text-dark">Latest SEC Filings</b></h4>
+                            </Col> 
+                            </Row>
+                        <div className='border'>
+
+                        <Row className="flex-wrap-reverse">
+                            <Col size="md-4">
+                                <b>Company Name</b>
+                            </Col>
+                            <Col size="md-4">
+                                <b>CIK</b>
+                            </Col>
+                            <Col size="md-4">
+                                <b>Filing Date</b>
+                            </Col>
+                        </Row>
+                        <List>
+                            {this.state.latestFilings.map(company => (
+                                <LatestFilingList
+                                key={company.id}
+                                company={company.companyName}
+                                cik={company.cik}
+                                filingDate={company.dateFiled}
+                                // Button={() => (
+                                //     <button
+                                //       onClick={this.handleCIK}
+                                //       className="btn"
+                                //       value={company.id}
+                                //       style={{borderColor: '#151A6A', color: '#151A6A'} }
+                                //     >
+                                //       Add
+                                //     </button>
+                                //   )}
+                                />
+                                ))}
+                            </List>
+                            </div>
+                            </>):(<></>)
+                        }
+                        </>
+                        //this is the end
                     )}                    
                 </div>
 
