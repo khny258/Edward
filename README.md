@@ -6,8 +6,8 @@ Edward will simplify information available in SEC's Edgar and display what matte
 
 <img src="/client/public/1.png">
 <img src="/client/public/2.png">
-<img src="/client/public/3.png">
-<img src="/client/public/4.png">
+<img src="/client/public/4.png" width="55%" height="55%">
+<img src="/client/public/3.png" width="55%" height="55%">
 <br>
 
 ## User Story
