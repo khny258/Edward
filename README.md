@@ -38,7 +38,7 @@ You can see a deployed version [here.](https://edward-2.herokuapp.com/)
 * Javascript
 * MongoDB / Mongoose
 * Passport
-* Puppeteer (A Node Library)
+* Puppeteer 
 * Cheerio
 * React-vis
 * Server and Client Error Handling.
