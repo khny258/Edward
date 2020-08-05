@@ -1,11 +1,3 @@
-# Edward
-
-What Edward Can Do For You
-
-Edward will simplify information available in SEC's Edgar and display what matters the most to you as an investor
-
-## User Story
-
 As a financial investor…..
 
 * I want to get latest public information about companies I am interested in investing
@@ -14,7 +6,7 @@ As a financial investor…..
 
 ### Installing
 
-Git clone the repo [here.](https://github.com/khny258/Project-3)
+Git clone the repo [here.](https://github.com/virus43/Edward)
 
 Navigate to server.js folder and "npm install" to install the required dependencies.
 
@@ -22,7 +14,7 @@ Navigate to root directory and "npm start" to start client.
 
 ## Deployment
 
-You can see a deployed version [here.](https://finance3.herokuapp.com/)
+You can see a deployed version [here.](https://edward-2.herokuapp.com/)
 
 ## Built With
 
@@ -31,7 +23,10 @@ You can see a deployed version [here.](https://finance3.herokuapp.com/)
 * Express.js
 * Javascript
 * MongoDB / Mongoose
+* Passport
 * Puppeteer (A Node Library)
+* Cheerio
+* React-vis
 * Server and Client Error Handling.
 * Travis CI + Tests Flow
 * Express Test Flow with Jest + Coveralls
