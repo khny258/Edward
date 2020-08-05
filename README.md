@@ -46,6 +46,12 @@ You can see a deployed version [here.](https://edward-2.herokuapp.com/)
 * Express Test Flow with Jest + Coveralls
 * React Tests + Coveralls
 
+## Future Plans
+* More services - text analytics/sentiment analysis, financial trend analysis
+* Mobile Enabled App - for iOS & Android 
+* More Integrations - from EDGAR’s other tools, REFINITIV, TWITTER, THOMSON REUTERS, S&P GLOBAL feeds
+* Enhanced UI/UX - for future versions of Edward
+
 ## Authors
 
 * **Mustapha Kadir** - [mussymuss](https://github.com/mussymuss)
