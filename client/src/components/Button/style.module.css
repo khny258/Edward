@@ -2,11 +2,10 @@
   float: right;
   color: #e74944;
 }
-.button{
-
+.button {
   border: 0;
-  background-color: #a873fc;  
+  background-color: #a873fc;
 }
-.button:hover{
+.button:hover {
   background: #6f2da8;
 }

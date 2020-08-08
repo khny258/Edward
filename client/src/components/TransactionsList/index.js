@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { ListItem } from "../List";
 
-function TransactionsList({ companyName, rptOwnerName, transactionShares,transactionDate,transactionPricePerShare,transactionCode}) {
+function TransactionsList({ companyName, rptOwnerName, transactionShares, transactionDate, transactionPricePerShare, transactionCode }) {
     return (
         <ListItem>
             <Row className="flex-wrap-reverse">
@@ -27,7 +27,6 @@ function TransactionsList({ companyName, rptOwnerName, transactionShares,transac
             </Row>
         </ListItem>
     );
-
 }
 
-export default TransactionsList
+export default TransactionsList;

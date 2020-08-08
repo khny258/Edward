@@ -1,14 +1,16 @@
-.container{
+.container {
    text-align: center;
-   margin-top:100px;
-   margin-bottom:100px;
-   color:gray;
+   margin-top: 100px;
+   margin-bottom: 100px;
+   color: gray;
 }
-.user{
+.user {
    word-break: break-all;
    overflow-wrap: break-word;
    max-width: 200px;
    margin: auto;
    display: block;
 }
-.user h5{text-align: center;}
+.user h5 {
+   text-align: center;
+}

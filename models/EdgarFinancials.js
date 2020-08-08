@@ -1,52 +1,51 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 var EdgarFinancialsSchema = new mongoose.Schema({
     userId: {
-      type: String,
-      trim: true      
+        type: String,
+        trim: true,
     },
     companyName: {
-      type: String,
-      trim: true      
+        type: String,
+        trim: true,
     },
     cik: {
         type: String,
-        trim: true      
-      },
-      cashOnCash: {
+        trim: true,
+    },
+    cashOnCash: {
         type: String,
-        trim: true
-      },
-      CashOnCashDate: {
+        trim: true,
+    },
+    CashOnCashDate: {
         type: String,
-        trim: true
-      },
-      assetsCurrent: {
+        trim: true,
+    },
+    assetsCurrent: {
         type: String,
-        trim: true
-      },    
-      assetsCurrentDate: {
+        trim: true,
+    },
+    assetsCurrentDate: {
         type: String,
-        trim: true
-      },  
-      liabilitiesCurrent: {
+        trim: true,
+    },
+    liabilitiesCurrent: {
         type: String,
-        trim: true
-      },   
-      liabilitiesCurrentDate: {
+        trim: true,
+    },
+    liabilitiesCurrentDate: {
         type: String,
-        trim: true
-      },  
-      eps: {
+        trim: true,
+    },
+    eps: {
         type: String,
-        trim: true
-      },   
-      epsDate: {
+        trim: true,
+    },
+    epsDate: {
         type: String,
-        trim: true
-      },  
-    
+        trim: true,
+    },
 });
 
-var EdgarFinancials = mongoose.model('EdgarFinancials', EdgarFinancialsSchema);
+var EdgarFinancials = mongoose.model("EdgarFinancials", EdgarFinancialsSchema);
 module.exports = EdgarFinancials;

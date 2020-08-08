@@ -1,10 +1,8 @@
-const router = require('express').Router();
-const edgarTransactions = require('../controllers/edgarTransactions')
+const router = require("express").Router();
+const edgarTransactions = require("../controllers/edgarTransactions");
 
-router.route('/')
-   .post(edgarTransactions.create);
+router.route("/").post(edgarTransactions.create);
 
-router.route('/:id')
-   .get(edgarTransactions.findByUserId);   
+router.route("/:id").get(edgarTransactions.findByUserId);
 
 module.exports = router;

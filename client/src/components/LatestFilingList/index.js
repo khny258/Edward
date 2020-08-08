@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Container } from "../Grid";
 import { ListItem } from "../List";
 
-function LatestFilingList({ company, cik, filingDate}) {
+function LatestFilingList({ company, cik, filingDate }) {
     return (
         <ListItem>
             <Row className="flex-wrap-reverse">
@@ -22,7 +22,6 @@ function LatestFilingList({ company, cik, filingDate}) {
             </Row>
         </ListItem>
     );
-
 }
 
-export default LatestFilingList
+export default LatestFilingList;
